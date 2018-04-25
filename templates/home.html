@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iiiDog</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- 上方固定bar -->
+    <div class="w3-top">
+        <!-- Big Screen -->
+        <div class="w3-bar w3-light-grey w3-border w3-padding">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white" href="javascript:void(0);" onclick="menuFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home w3-xlarge"></i></a>
+            <a href="/find" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+	        <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white w3-hide-small" placeholder="Search.." style="width:30%">
+	        <button type="submit" value="search" class="w3-bar-item w3-button w3-green w3-hide-small"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+	    <!-- Small Screen -->
+        <div id="nav" class="w3-bar-block w3-light-grey w3-hide w3-hide-medium w3-hide-large">
+            <a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+			<a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+                <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white" placeholder="Search.." style="width:100%">
+                <button type="submit" value="search" class="w3-bar-item w3-button w3-green"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+	<br><br>
+	<style>
+	/* Full height image header */
+	body, html {
+		height: 100%;
+		line-height: 1.8;
+	}
+	.bgimg {
+		background-position: center;
+		background-size: cover;
+		background-image: url("{{ url_for('static', filename='img/discussdog.jpg') }}");
+		min-height: 100%;
+	}
+	/* Switch image button 
+	.w3-badge {height:20px;width:20px;padding:0} */
+	</style>
+
+	<!-- Header with full-height image -->
+	<header class="bgimg w3-display-container w3-grayscale-min">
+		<div class="w3-display-left w3-text-black" style="padding:48px">
+			<span class="w3-jumbo w3-hide-small">Welcome</span><br>
+			<span class="w3-xxlarge w3-hide-large w3-hide-medium">Hello</span><br>
+			<span class="w3-large">Start communicate with others</span>
+			<p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more and start today</a></p>
+		</div>
+	</header>
+    
+    <script>
+        //Used to toggle the menu on small screens when clicking on the menu button
+        function menuFunction() {
+            var x = document.getElementById("nav");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+</body>
+</html>

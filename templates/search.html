@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iiiDog</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- 上方固定bar -->
+    <div class="w3-top">
+        <!-- Big Screen -->
+        <div class="w3-bar w3-light-grey w3-border w3-padding">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white" href="javascript:void(0);" onclick="menuFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home w3-xlarge"></i></a>
+            <a href="/find" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+	        <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white w3-hide-small" placeholder="Search.." style="width:30%">
+	        <button type="submit" value="search" class="w3-bar-item w3-button w3-green w3-hide-small"><i class="fa fa-search"></i></button>
+                <br>
+                <div class="w3-row-padding">
+                    <div class="w3-col s4"> <p>Start</p><input type="date" name="st" id="st" value="{{st}}" min="2010-01-01" max="2018-04-12" required> </div>
+                    <div class="w3-col s4"> <p>End</p><input type="date" name="et" id="et" value="{{et}}" min="2010-01-01" max="2018-04-12" required> </div>
+                </div>
+            </form>
+        </div>
+	    <!-- Small Screen -->
+        <div id="nav" class="w3-bar-block w3-light-grey w3-hide w3-hide-medium w3-hide-large">
+            <a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+	    <a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+                <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white" placeholder="Search.." style="width:100%">
+                <button type="submit" value="search" class="w3-bar-item w3-button w3-green"><i class="fa fa-search"></i></button>
+                <br>
+                <div class="w3-row-padding">
+                    <div class="w3-col s4"> <p>Start</p><input type="date" name="start time" value="{{st}}" min="2010-01-01" max="2018-04-12" required> </div>
+                    <div class="w3-col s4"> <p>End</p><input type="date" name="end time" value="{{et}}" min="2010-01-01" max="2018-04-12" required> </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br><br>
+    <br><br>
+    
+    <br><br>
+    <div class="w3-text-blue-grey">
+        <p>{{response.hits.total}} result<p>
+    </div>
+    {% for resp in response.hits.hits %}
+    <div class="w3-panel w3-leftbar w3-threequarter w3-light-grey w3-hover-border-green">
+        <h5 class="w3-text-blue"><a href="{{resp._source.title_url}}"> {{resp._source.title}}</a></h5>
+        <p>Score: {{resp._score}}</p>
+        <p>Highlight: {{resp.highlight.content[0]}}</p>
+        <p>Content: {{resp._source.content}}</p>
+        <p>Time: {{resp._source.post_date}}</p>
+    </div>
+    {% endfor %}
+
+
+    <script>
+        //Used to toggle the menu on small screens when clicking on the menu button
+        function menuFunction() {
+            var x = document.getElementById("nav");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+    
+</body>
+</html>

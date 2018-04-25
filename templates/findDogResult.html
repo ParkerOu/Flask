@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iiiDog</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- 上方固定bar -->
+    <div class="w3-top">
+        <!-- Big Screen -->
+        <div class="w3-bar w3-light-grey w3-border w3-padding">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white" href="javascript:void(0);" onclick="menuFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home w3-xlarge"></i></a>
+            <a href="/find" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+	        <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white w3-hide-small" placeholder="Search.." style="width:30%">
+	        <button type="submit" value="search" class="w3-bar-item w3-button w3-green w3-hide-small"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+	    <!-- Small Screen -->
+        <div id="nav" class="w3-bar-block w3-light-grey w3-hide w3-hide-medium w3-hide-large">
+            <a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+			<a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+                <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white" placeholder="Search.." style="width:100%">
+                <button type="submit" value="search" class="w3-bar-item w3-button w3-green"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <br><br>
+    <br><br>
+
+    <div class="w3-row-padding w3-panel w3-cell">
+        <div class="w3-third w3-container w3-amber w3-border w3-cell">
+            <h2 class="w3-center">Top 1</h2>
+            <a href="{{ dog1url }}"><img id="no1img" class="w3-grayscale" src="static/img/Missingdogphoto/{{ dog1ID }}.jpg" alt="No.1 image" style="width:100%; height: 100%"></a>
+            <h3>id: {{ dog1ID }}</h3>
+            <h3>所在地: {{ dog1loc }}</h3>
+            <h3>狗種: {{ dog1breed }}</h3>
+        </div>
+        <div class="w3-third w3-container w3-border w3-cell">
+            <h2 class="w3-center">Top 2</h2>
+            <a id="no2link" href="{{ dog2url }}"><img id="no2img" class="w3-grayscale" src="static/img/Missingdogphoto/{{ dog2ID }}.jpg" alt="No.2 image" style="width:100%; height: 100%"></a>
+            <h3>id: {{ dog2ID }}</h3>
+            <h3>所在地: {{ dog2loc }}</h3>
+            <h3>狗種: {{ dog2breed }}</h3>
+        </div>
+        <div class="w3-third w3-container w3-border w3-cell">
+            <h2 class="w3-center">Top 3</h2>
+            <a id="no3link" href="{{ dog3url }}"><img id="no3img" class="w3-grayscale" src="static/img/Missingdogphoto/{{ dog3ID }}.jpg" alt="No.3 image" style="width:100%; height: 100%"></a>
+            <h3>id: {{ dog3ID }}</h3>
+            <h3>所在地: {{ dog3loc }}</h3>
+            <h3>狗種: {{ dog3breed }}</h3>
+        </div>
+    </div>
+    <div class="w3-row-padding w3-panel w3-cell">
+        <div class="w3-third w3-container w3-border w3-cell">
+            <h2 class="w3-center">Top 4</h2>
+            <a id="no4link" href="{{ dog4url }}"><img id="no4img" class="w3-grayscale" src="static/img/Missingdogphoto/{{ dog4ID }}.jpg" alt="No.4 image" style="width:100%; height: 100%"></a>
+            <h3>id: {{ dog4ID }}</h3>
+            <h3>所在地: {{ dog4loc }}</h3>
+            <h3>狗種: {{ dog4breed }}</h3>
+        </div>
+        <div class="w3-third w3-container w3-border w3-cell">
+            <h2 class="w3-center">Top 5</h2>
+            <a id="no5link" href="{{ dog5url }}"><img id="no5img" class="w3-grayscale" src="static/img/Missingdogphoto/{{ dog5ID }}.jpg" alt="No.5 image" style="width:100%; height: 100%"></a>
+            <h3>id: {{ dog5ID }}</h3>
+            <h3>所在地: {{ dog5loc }}</h3>
+            <h3>狗種: {{ dog5breed }}</h3>
+        </div>
+    </div>
+    
+    <script>
+        //Used to toggle the menu on small screens when clicking on the menu button
+        function menuFunction() {
+            var x = document.getElementById("nav");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+</body>
+</html>

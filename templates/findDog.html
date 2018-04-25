@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iiiDog</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/w3.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- 上方固定bar -->
+    <div class="w3-top">
+        <!-- Big Screen -->
+        <div class="w3-bar w3-light-grey w3-border w3-padding">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white" href="javascript:void(0);" onclick="menuFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home w3-xlarge"></i></a>
+            <a href="/find" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+	        <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white w3-hide-small" placeholder="Search.." style="width:30%">
+	        <button type="submit" value="search" class="w3-bar-item w3-button w3-green w3-hide-small"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+	    <!-- Small Screen -->
+        <div id="nav" class="w3-bar-block w3-light-grey w3-hide w3-hide-medium w3-hide-large">
+            <a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/breed.png') }}" style="max-width:28px;max-height: 28px"><b> Find</b></a>
+			<a href="#" class="w3-bar-item w3-button"><img src="{{ url_for('static', filename='img/health.png') }}" style="max-width:28px;max-height: 28px"><b> Breed</b></a>
+            <form action="/search" method="post" autocomplete="off">
+                <input type="text" name="q" id="q" value="{{q}}" class="w3-bar-item w3-input w3-white" placeholder="Search.." style="width:100%">
+                <button type="submit" value="search" class="w3-bar-item w3-button w3-green"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <br><br>
+    <br><br>
+    
+    <!-- 上傳圖片 -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+    <div class="w3-row-padding">
+        <div class="w3-col m8 l7 w3-cell">
+            <div class="w3-card-4 w3-display-container w3-hover-opacity">
+                <img id="blah" class="w3-grayscale" src="{{ url_for('static', filename='img/findyourdog.jpg') }}" alt="Upload your image" style="width:100%; height: 100%">
+                <div class="w3-display-middle w3-display-hover w3-xxlarge">
+                    <button accept="image/*" type="submit" class="w3-button w3-black"><i class="fa fa-file-image-o" style="font-size:48px"></i>Upload</button>
+                </div>
+            </div>
+        </div>
+        <div class="w3-col m4 l4 w3-cell">
+            <div class="w3-card-4">
+                <div class="w3-container w3-center" style="width:100%; height: 100%">
+                    <p>Click image to upload file and find missing dogs.</p>
+                    <p>Base on:</p>
+                    <p><b>Breed</b></p>
+                    <p><b>Similarity</b></p>
+                </div>
+            </div>
+            <br>
+            <input type="file" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" name="photo">
+        </div>
+    </div>
+    </form>
+    
+    <script>
+        //Used to toggle the menu on small screens when clicking on the menu button
+        function menuFunction() {
+            var x = document.getElementById("nav");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+</body>
+</html>
